@@ -25,4 +25,4 @@ def read_txt(path):
     return lines
 
 
-print('读取txt result=', read_txt('G:\pycharm\pytest.txt'));
+print('读取txt result =', read_txt('G:\pycharm\pytest.txt'));
