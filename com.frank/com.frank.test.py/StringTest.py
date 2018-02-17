@@ -4,6 +4,8 @@ import re
 import random as r
 from distutils.log import warn as printf
 from random import randrange
+from string import ascii_lowercase as lowercase
+from time import time
 
 str = "frank.just for test test2 test3"
 replace = str.replace("test", "hello")
@@ -64,14 +66,14 @@ def generate2():
 print("suijishu =", generate2())
 
 
-def genearateName(number):
-    lastName = ['赵', '钱', '孙', '李', '周', '吴', '郑', '王', '冯', '陈', '褚', '卫', '蒋', '沈', '韩', '杨', '朱', '秦', '尤', '许',
-                '何', '吕', '施', '张', '孔', '曹', '严', '华', '金', '魏', '陶', '姜', '戚', '谢', '邹', '喻', '柏', '水', '窦', '章',
-                '云', '苏', '潘', '葛', '奚', '范', '彭', '郎', '鲁', '韦', '昌', '马', '苗', '凤', '花', '方', '俞', '任', '袁', '柳',
-                '酆', '鲍', '史', '唐', '费', '廉', '岑', '薛', '雷', '贺', '倪', '汤', '滕', '殷', '罗', '毕', '郝', '邬', '安', '常',
-                '乐', '于', '时', '傅', '皮', '卞', '齐', '康', '伍', '余', '元', '卜', '顾', '孟', '平', '黄', '和', '穆', '萧', '尹',
-                '姚', '邵', '堪', '汪', '祁', '毛', '禹', '狄', '米', '贝', '明', '臧', '计', '伏', '成', '戴', '谈', '宋', '茅', '庞',
-                '熊', '纪', '舒', '屈', '项', '祝', '董', '梁']
+def genearatename(number):
+    last_name = ['赵', '钱', '孙', '李', '周', '吴', '郑', '王', '冯', '陈', '褚', '卫', '蒋', '沈', '韩', '杨', '朱', '秦', '尤', '许',
+                 '何', '吕', '施', '张', '孔', '曹', '严', '华', '金', '魏', '陶', '姜', '戚', '谢', '邹', '喻', '柏', '水', '窦', '章',
+                 '云', '苏', '潘', '葛', '奚', '范', '彭', '郎', '鲁', '韦', '昌', '马', '苗', '凤', '花', '方', '俞', '任', '袁', '柳',
+                 '酆', '鲍', '史', '唐', '费', '廉', '岑', '薛', '雷', '贺', '倪', '汤', '滕', '殷', '罗', '毕', '郝', '邬', '安', '常',
+                 '乐', '于', '时', '傅', '皮', '卞', '齐', '康', '伍', '余', '元', '卜', '顾', '孟', '平', '黄', '和', '穆', '萧', '尹',
+                 '姚', '邵', '堪', '汪', '祁', '毛', '禹', '狄', '米', '贝', '明', '臧', '计', '伏', '成', '戴', '谈', '宋', '茅', '庞',
+                 '熊', '纪', '舒', '屈', '项', '祝', '董', '梁']
     second = ['米', '丽', '客', '南', '领', '节', '衣', '站', '刻', '统',
               '福', '城', '故', '历', '惊', '脸', '选', '包', '紧', '争', '另', '建', '维', '绝', '树', '系', '伤', '示', '愿',
               '持', '千', '史', '谁', '准', '联', '妇', '纪', '基', '买', '志', '静', '阿', '诗', '独', '复', '痛', '消', '社', '算',
@@ -108,9 +110,21 @@ def genearateName(number):
 
     print("开始生成用户名")
     for i in range(number):
-        result = r.choice(lastName) + r.choice(second) + r.choice(third)
+        result = r.choice(last_name) + r.choice(second) + r.choice(third)
         print(result)
     print("生成用户名完成")
 
 
-genearateName(15)
+def genearateemail(number):
+    suffix = ['sina.com', 'sina.cn', 'aliyun.com', '163.com', '126.com', 'qq.com', 'yeah.net', 'VIP.163.com',
+              'gmail.com', 'yahoo.com', 'msn.com', 'hotmail.com', 'aol.com', 'ask.com', 'live.com', 'qq.com',
+              '0355.net', '163.com', '163.net', '263.net', '3721.net', 'yeah.net', 'mail.com']
+    for i in range(number):
+        length = randrange(7, 12)
+        suf = ''.join(r.choice(lowercase) for i in range(length))
+        result = '%s@%s' % (suf, r.choice(suffix))
+        print(result)
+
+
+genearatename(5)
+genearateemail(10)
