@@ -1,8 +1,14 @@
-# print('Hello World')
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-
+# -*- coding: utf-8 -*-
 print('Hello World')
-name = input("please input your name: ")
-print("hello: ", name)
+# name = input("please input your name: ")
+# print("hello: ", name)
+
+s = 'I\'m \"ok\"!'
+print(s)
+
+n = 1.25e3
+print(n)
+n = -1.25e3
+print(n)
+
+print('a\nb\nc')
