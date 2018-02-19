@@ -19,12 +19,6 @@ print(True)
 
 print('and or not:', True and False)
 
-age = 18
-if age >= 18:
-    print('aduit')
-else:
-    print('teenager')
-
 # python 中有两种除法， / 得到的是浮点类型的结果；// 得到的是整型的结果
 print('10/3= ', 10 / 3)
 print('9/3= ', 9 / 3)
@@ -69,9 +63,28 @@ print("after append list=", mylist)
 # list里的数据类型可以不一致
 mylist.insert(1, ['one', True])
 print("after insert list=", mylist)
+# 删除
+mylist.pop(3)
+print('atfer pop list=', mylist)
 
 # tuple 可以理解为一个不可变的list，不可变，指的是引用不可变。
 mytuple = (1, '2', mylist)
 print('mytuple=', mytuple)
 mylist.append('tuple\'s member list change')
 print('mytuple=', mytuple)
+
+
+if '0':
+    print("True")
+else:
+    print("False")
+
+age = input('请输入年龄: ')
+# 直接使用age会报错，因为input接收到的是字符串
+age = int(age)
+if age >= 18:
+    print('aduit')
+elif age >= 6:
+    print('teenager')
+else:
+    print('kid')
