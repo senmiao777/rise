@@ -73,18 +73,46 @@ print('mytuple=', mytuple)
 mylist.append('tuple\'s member list change')
 print('mytuple=', mytuple)
 
-
 if '0':
     print("True")
 else:
     print("False")
 
-age = input('请输入年龄: ')
-# 直接使用age会报错，因为input接收到的是字符串
-age = int(age)
+# age = input('请输入年龄: ')
+# # 直接使用age会报错，因为input接收到的是字符串
+# age = int(age)
+age = 18
 if age >= 18:
     print('aduit')
 elif age >= 6:
     print('teenager')
 else:
     print('kid')
+
+for i in mylist:
+    print(i)
+
+# range函数生成一个序列，下标从0到n-1
+r = range(5)
+print("range =", r)
+for i in r:
+    print(i)
+
+s = 0
+for i in range(101):
+    s = s + i
+print("1+2+3+...+99+100 =", s)
+
+i = 0
+s = 0
+while i <= 100:
+    s = s + i
+    i = i + 1
+print("result= ", s)
+
+for i in range(10):
+    if i % 3 == 0:
+        continue
+    if i % 5 == 0:
+        break
+    print("number= ", i)
