@@ -116,3 +116,31 @@ for i in range(10):
     if i % 5 == 0:
         break
     print("number= ", i)
+
+# dict dictionary 就是java里的map
+obj = {'frank': True, 'sofia': 'woman', age: 78}
+# 't' in obj 判断是否存在
+print("obj['frank']=%s ,obj['sofia']=%s ,obj[age]=%s,exist=%s" % (obj['frank'], obj['sofia'], obj[age], 't' in obj))
+
+# 创建后赋值
+obj['add'] = 'addElement'
+obj['add2'] = 'addElement2'
+# get 第二个参数，给默认值，map中不存在不会保存，返回默认值
+print("obj['add']= %s,obj['add3']=%s" % (obj.get('add'), obj.get('add3', -199)))
+# obj.pop('add2')
+print("obj=", obj)
+
+s1 = set([1, 2, 3, 4, 4, 4, 4])
+s2 = set([3, 4, 5, 6, 7])
+s3 = set([3, 4, 5, 6, 7, 8, 9])
+s4 = s1 & s2
+s5 = s1 | s2
+print("s1 & s2 =", s4)
+print("s1 | s2 =", s5)
+print("s2 -s1 =", s2 - s1)
+print("s1 - s2 =", s1 - s2)
+print("s1 | s2 | s3 =", (s1 | s2 | s3))
+print("s1 & s2 & s3 =", (s1 & s2 & s3))
+
+contains__ = s1.__contains__(11)
+print("contains=",contains__)
