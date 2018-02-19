@@ -70,6 +70,7 @@ print("after append list=", mylist)
 mylist.insert(1, ['one', True])
 print("after insert list=", mylist)
 
+# tuple 可以理解为一个不可变的list，不可变，指的是引用不可变。
 mytuple = (1, '2', mylist)
 print('mytuple=', mytuple)
 mylist.append('tuple\'s member list change')
