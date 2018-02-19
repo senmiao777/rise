@@ -61,6 +61,16 @@ print("encode=", 'A'.encode('utf8'))
 print("encode=", 'A'.encode('Euc-kr'))
 print("encode=", 'A'.encode('Shift_JIS'))
 
-mylist = ['张三', 'Bob', 'Sofia']
+mylist = ['张三', 'Bob', 'Frank', 'Sofia']
 print("list长度=", len(mylist))
 print("list[0]=%s,最后一个元素list[-1]=%s，倒数第二个元素list[-2]=%s" % (mylist[0], mylist[-1], mylist[-2]))
+mylist.append('App')
+print("after append list=", mylist)
+# list里的数据类型可以不一致
+mylist.insert(1, ['one', True])
+print("after insert list=", mylist)
+
+mytuple = (1, '2', mylist)
+print('mytuple=', mytuple)
+mylist.append('tuple\'s member list change')
+print('mytuple=', mytuple)
