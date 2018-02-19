@@ -60,3 +60,7 @@ print("encode=", 'A'.encode('ascii'))
 print("encode=", 'A'.encode('utf8'))
 print("encode=", 'A'.encode('Euc-kr'))
 print("encode=", 'A'.encode('Shift_JIS'))
+
+mylist = ['张三', 'Bob', 'Sofia']
+print("list长度=", len(mylist))
+print("list[0]=%s,最后一个元素list[-1]=%s，倒数第二个元素list[-2]=%s" % (mylist[0], mylist[-1], mylist[-2]))
