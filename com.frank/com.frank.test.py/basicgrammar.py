@@ -144,3 +144,18 @@ print("s1 & s2 & s3 =", (s1 & s2 & s3))
 
 contains__ = s1.__contains__(11)
 print("contains=", contains__)
+
+a = 100
+print("abs()=", abs(a))
+string = "190"
+int1 = int(string)
+print("数据类型转换 String 2 int", int1)
+string = "190.98"
+f = float(string)
+print("数据类型转换 String 2 float", f)
+
+print("int 2 String =", str(int1))
+
+print("1- String 2 boolean =", bool(string))
+print("2- String 2 boolean =", bool(''))
+print("int 2 boolean =", bool(int1))
