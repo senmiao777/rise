@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from my_func import my_abs
 print('Hello World')
 # name = input("please input your name: ")
 # print("hello: ", name)
@@ -159,3 +160,7 @@ print("int 2 String =", str(int1))
 print("1- String 2 boolean =", bool(string))
 print("2- String 2 boolean =", bool(''))
 print("int 2 boolean =", bool(int1))
+
+
+print("my_abs=", my_abs("gt"))
+
