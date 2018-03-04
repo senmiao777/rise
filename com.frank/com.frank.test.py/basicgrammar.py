@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from my_func import my_abs
+from my_func import my_abs, my_fx, power, enter_info
+
 print('Hello World')
 # name = input("please input your name: ")
 # print("hello: ", name)
@@ -161,6 +162,11 @@ print("1- String 2 boolean =", bool(string))
 print("2- String 2 boolean =", bool(''))
 print("int 2 boolean =", bool(int1))
 
+# print("my_abs=", my_abs("gt"))
+print("my_abs=", my_abs(1))
 
-print("my_abs=", my_abs("gt"))
+print("my_fx", my_fx(1, 2, 3))
+print("power=", power(2, 4))
 
+
+print("enter_info:", enter_info('张三', city='shanghai'))
