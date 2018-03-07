@@ -28,17 +28,36 @@ def remove_duplicate(numbers):
             numbers[n] = numbers[i]
     return n + 1
 
-def remove_element(nums,target):
+
+def remove_element(nums, target):
     index = 0
     n = len(nums)
     for i in range(n):
         if (nums[i] != target):
             nums[index] = nums[i]
-            index = index +1
+            index = index + 1
     return index
 
 
+#
+#  Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
+#
+# Example 1
+#
+# Input: [3,0,1]
+# Output: 2
+#
+# Example 2
+#
+# Input: [9,6,4,2,3,5,7,0,1]
+# Output: 8
 
+def find_missing_num(numbers):
+    s = set(numbers)
+    # 总数是 len(numbers) 加1 ，没有加一，缺失的是最大值的时候，程序会有问题
+    for i in range(len(numbers) + 1):
+        if not i in s:
+            return i
 
 
 num = [1, 4, 11, 15, 17]
@@ -49,7 +68,9 @@ num = [1, 1, 1, 2, 3, 3, 3, 4, 4, 5, 6, 7]
 print("remove_duplicate=", remove_duplicate(num))
 print("remove_duplicate number =", num)
 
-
 num = [1, 1, 1, 2, 3, 1, 3, 4, 4, 5, 6, 7]
-print("remove_element=", remove_element(num,3))
+print("remove_element=", remove_element(num, 3))
 print("remove_element number =", num)
+
+num = [1, 8, 2, 3, 4, 5, 6, 7, 10, 9, 0]
+print("find_missing_num=", find_missing_num(num))
