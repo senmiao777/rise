@@ -19,7 +19,7 @@ def twoSum(numbers, target):
 
 
 def remove_duplicate(numbers):
-    n = 0;
+    n = 0
     for i in range(1, len(numbers)):
         # 从第0个开始比
         if (numbers[n] != numbers[i]):
@@ -27,6 +27,18 @@ def remove_duplicate(numbers):
             # 从第一个开始记
             numbers[n] = numbers[i]
     return n + 1
+
+def remove_element(nums,target):
+    index = 0
+    n = len(nums)
+    for i in range(n):
+        if (nums[i] != target):
+            nums[index] = nums[i]
+            index = index +1
+    return index
+
+
+
 
 
 num = [1, 4, 11, 15, 17]
@@ -36,3 +48,8 @@ print("twoSum=", twoSum(num, target))
 num = [1, 1, 1, 2, 3, 3, 3, 4, 4, 5, 6, 7]
 print("remove_duplicate=", remove_duplicate(num))
 print("remove_duplicate number =", num)
+
+
+num = [1, 1, 1, 2, 3, 1, 3, 4, 4, 5, 6, 7]
+print("remove_element=", remove_element(num,3))
+print("remove_element number =", num)
