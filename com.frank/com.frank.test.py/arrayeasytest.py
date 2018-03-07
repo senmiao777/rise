@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 print('Hello World')
@@ -39,6 +39,17 @@ def remove_element(nums, target):
     return index
 
 
+def move_zero(numbers):
+    index = 0
+    l = len(numbers)
+    for i in range(l):
+        if (numbers[i] != 0):
+            numbers[index] = numbers[i]
+            index = index + 1
+    for i in range(index, l):
+        numbers[i] = 0
+
+
 #
 #  Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
 #
@@ -70,7 +81,11 @@ print("remove_duplicate number =", num)
 
 num = [1, 1, 1, 2, 3, 1, 3, 4, 4, 5, 6, 7]
 print("remove_element=", remove_element(num, 3))
-print("remove_element number =", num)
+print("move_zero number =", num)
 
 num = [1, 8, 2, 3, 4, 5, 6, 7, 10, 9, 0]
 print("find_missing_num=", find_missing_num(num))
+
+num = [0, 8, 2, 0, 4, 5, 6, 7, 10, 9, 0]
+move_zero(num)
+print("move_zero=", num)
