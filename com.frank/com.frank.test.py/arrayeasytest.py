@@ -77,7 +77,7 @@ def contains_duplicate(numbers):
         if numbers[i] in map:
             return True
         else:
-            map[i] = numbers[i]
+            map[numbers[i]] = i
     return False
 
 
@@ -100,5 +100,5 @@ num = [0, 8, 2, 0, 4, 5, 6, 7, 10, 9, 0]
 move_zero(num)
 print("move_zero=", num)
 
-num = [0, 8, 2, 4, 5, 6, 7, 10, 9]
+num = [0, 8, 2, 4, 6,5, 6, 7, 10, 9]
 print("contains_duplicate=", contains_duplicate(num))
