@@ -21,8 +21,8 @@ def parse_html(html):
     movie_list = soup.find('ol', attrs={'class': 'grid_view'})
     li_list = movie_list.find_all('li')
     for li in li_list:
-        find = li.find('div', attrs={'class': 'pic'})
-        print("find=", find.find('a').get('href'))
+        href = li.find('div', attrs={'class': 'pic'}).find('a').get('href')
+        print("href=", href)
         detail = li.find('div', attrs={'class': 'hd'})
         title = detail.find('span', attrs={'class': 'title'}).getText()
         print ("title=",title)
