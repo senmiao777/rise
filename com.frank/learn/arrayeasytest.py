@@ -71,6 +71,16 @@ def find_missing_num(numbers):
             return i
 
 
+def contains_duplicate(numbers):
+    map = {}
+    for i in range(len(numbers)):
+        if numbers[i] in map:
+            return True
+        else:
+            map[numbers[i]] = i
+    return False
+
+
 num = [1, 4, 11, 15, 17]
 target = 26
 print("twoSum=", twoSum(num, target))
@@ -89,3 +99,6 @@ print("find_missing_num=", find_missing_num(num))
 num = [0, 8, 2, 0, 4, 5, 6, 7, 10, 9, 0]
 move_zero(num)
 print("move_zero=", num)
+
+num = [0, 8, 2, 4, 6,5, 6, 7, 10, 9]
+print("contains_duplicate=", contains_duplicate(num))
