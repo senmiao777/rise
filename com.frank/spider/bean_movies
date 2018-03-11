@@ -7,7 +7,6 @@ BEAN_TOP_250_URL = 'https://movie.douban.com/top250'
 SUFFIX = '人评价'
 
 
-
 def download_page(url):
     print("download_page url=", url)
     head = {
@@ -15,7 +14,8 @@ def download_page(url):
     }
     data = requests.get(url, headers=head).content
     return data
-  #  return data
+    #  return data
+
 
 ##  [<span class="title">肖申克的救赎</span>, <span class="title"> / The Shawshank Redemption</span>]
 ## find 获取的是<span class="title">肖申克的救赎</span>
@@ -27,7 +27,8 @@ def parse_html(html):
     li_list = movie_list.find_all('li')
     for li in li_list:
         a_href = li.find('div', attrs={'class': 'pic'})
-        href = a_href.find('a').get('href')
+        ## a标签.get('href') 或者 a标签['href'] 都可以获取链接数据
+        href = a_href.find('a')['href']
         img = a_href.find('img').get('src')
         print("href=", href)
         print("img=", img)
@@ -36,19 +37,19 @@ def parse_html(html):
         print("title=", title)
         peoples = li.find('div', attrs={'class': 'bd'})
         director = peoples.find('p').get_text()
-        print ("director=",director)
+        print("director=", director)
         scorediv = li.find('div', attrs={'class': 'star'})
         score = scorediv.find('span', attrs={'class': 'rating_num'}).getText()
         print("score=", score)
         numbers = scorediv.find_all('span')[3].getText()
-        print("numbers=", numbers.replace(SUFFIX,''))
-        quote = li.find('p',attrs={'class':'quote'}).getText()
+        print("numbers=", numbers.replace(SUFFIX, ''))
+        quote = li.find('p', attrs={'class': 'quote'}).getText()
         print("quote=", quote)
 
     next_page = soup.find('span', attrs={'class': 'next'}).find('a')
-    print('next_page=',next_page)
+    print('next_page=', next_page)
 
-    if(next_page):
+    if (next_page):
         return BEAN_TOP_250_URL + next_page['href']
     return None
     # return find
