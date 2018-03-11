@@ -4,6 +4,8 @@ import requests
 from bs4 import BeautifulSoup
 
 BEAN_TOP_250_URL = 'https://movie.douban.com/top250'
+SUFFIX = '人评价'
+
 
 
 def download_page(url):
@@ -21,12 +23,25 @@ def parse_html(html):
     movie_list = soup.find('ol', attrs={'class': 'grid_view'})
     li_list = movie_list.find_all('li')
     for li in li_list:
-        href = li.find('div', attrs={'class': 'pic'}).find('a').get('href')
+        a_href = li.find('div', attrs={'class': 'pic'})
+        href = a_href.find('a').get('href')
+        img = a_href.find('img').get('src')
         print("href=", href)
+        print("img=", img)
         detail = li.find('div', attrs={'class': 'hd'})
         title = detail.find('span', attrs={'class': 'title'}).getText()
-        print ("title=",title)
-   # return find
+        print("title=", title)
+        peoples = li.find('div', attrs={'class': 'bd'})
+        director = peoples.find('p').get_text()
+        print ("director=",director)
+        scorediv = li.find('div', attrs={'class': 'star'})
+        score = scorediv.find('span', attrs={'class': 'rating_num'}).getText()
+        print("score=", score)
+        numbers = scorediv.find_all('span')[3].getText()
+        print("numbers=", numbers.replace(SUFFIX,''))
+        quote = li.find('p',attrs={'class':'quote'}).getText()
+        print("quote=", quote)
+        # return find
 
 
 print("download_page result=", download_page(BEAN_TOP_250_URL))
