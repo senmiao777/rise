@@ -10,8 +10,15 @@ def download_page(url):
     head = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36'
     }
-    data = requests.get(url,headers = head).content
+    data = requests.get(url, headers=head).content
     return data
 
 
+def parse_html(html):
+    soup = BeautifulSoup(html)
+    movie_list = soup.find('ol', attrs={'class': 'grid_view'})
+    return movie_list
+
+
 print("download_page result=", download_page(BEAN_TOP_250_URL))
+print("parse_html result=", parse_html(download_page(BEAN_TOP_250_URL)))
