@@ -13,11 +13,20 @@ def download_page(url):
     data = requests.get(url, headers=head).content
     return data
 
-
+##  [<span class="title">肖申克的救赎</span>, <span class="title"> / The Shawshank Redemption</span>]
+## find 获取的是<span class="title">肖申克的救赎</span>
+## find_all 获取的是list [XXX,RRR,HHH]
 def parse_html(html):
     soup = BeautifulSoup(html)
     movie_list = soup.find('ol', attrs={'class': 'grid_view'})
-    return movie_list
+    li_list = movie_list.find_all('li')
+    for li in li_list:
+        find = li.find('div', attrs={'class': 'pic'})
+        print("find=", find.find('a').get('href'))
+        detail = li.find('div', attrs={'class': 'hd'})
+        title = detail.find('span', attrs={'class': 'title'}).getText()
+        print ("title=",title)
+   # return find
 
 
 print("download_page result=", download_page(BEAN_TOP_250_URL))
