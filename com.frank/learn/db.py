@@ -9,6 +9,6 @@ cursor.execute("select version()")
 fetchone = cursor.fetchone()
 print("fetchone=",fetchone)
 
-cursor.execute("select * from user_info where id = 1")
-fetchone = cursor.fetchone()
+cursor.execute("select * from user_info where user_type= 2")
+fetchone = cursor.fetchall()
 print("user_info one=",fetchone)
