@@ -1,6 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import requests
+import pymysql
 from bs4 import BeautifulSoup
 
 BEAN_TOP_250_URL = 'https://movie.douban.com/top250'
