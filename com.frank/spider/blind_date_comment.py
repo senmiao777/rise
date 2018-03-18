@@ -21,9 +21,7 @@ def download_page(url):
     response = requests.get(url, headers=head)
     content = response.content.decode()
     # 注意：直接通过response.json 得到的数据，前边会有 <bound method Response.json of <Response [200]>> 这么个字符串，后边还有点特殊，不好处理
-    json2 = response.json
     print("content json =",json.loads(content))
-    print("json2=",json2)
     return content
 
 def parse_html(response):
@@ -33,5 +31,5 @@ def parse_html(response):
 
 page = download_page(url)
 print("download_page=",page)
-# html = parse_html(page)
-# print(html)
+html = parse_html(page)
+print(html)

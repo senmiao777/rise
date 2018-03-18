@@ -170,3 +170,7 @@ print("power=", power(2, 4))
 
 
 print("enter_info:", enter_info('张三', city='shanghai'))
+
+str ="地区：江西赣州，性别：男，职业：教书匠，学历：本科，年龄：24，对对方的大致要求：最好女的。"
+strip = str.strip(',')
+print("strip=",strip)
