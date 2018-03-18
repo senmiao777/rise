@@ -168,9 +168,23 @@ print("my_abs=", my_abs(1))
 print("my_fx", my_fx(1, 2, 3))
 print("power=", power(2, 4))
 
-
 print("enter_info:", enter_info('张三', city='shanghai'))
 
-str ="地区：江西赣州，性别：男，职业：教书匠，学历：本科，年龄：24，对对方的大致要求：最好女的。"
-strip = str.strip(',')
-print("strip=",strip)
+str = "地区：江西赣州，性别：男，职业：教书匠，学历：本科，年龄：24，对对方的大致要求：最好女的。"
+split = str.split("，")
+print("strip=", split)
+
+str2 = "地区：江西赣州"
+find = str2.find("2")
+print("index find=", find)
+
+# 注意 index 方法，如果找不到，会报错；find 方法，找不到元素，返回 -1
+index = str2.index("：")
+print("index index=", index)
+print("substring=", str2)
+str3 = "地区江西赣州"
+find = str3.find("地区")
+print("index find=", find)
+
+index = str3.index("地区")
+print("index index=", index)
