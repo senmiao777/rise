@@ -3,6 +3,7 @@
 import requests
 import json
 import pymysql
+import re
 
 url = "https://www.zhihu.com/api/v4/answers/251023939/comments?include=data%5B*%5D.author%2Ccollapsed%2Creply_to_author%2Cdisliked%2Ccontent%2Cvoting%2Cvote_count%2Cis_parent_author%2Cis_author&order=normal&limit=20&offset=0&status=open"
 
@@ -34,11 +35,15 @@ def parse_html(response):
 
 
 def get_comment_detail(list,db):
-    print( "--------------------------------------------content")
+    print( "--------------------------------------------len(list)",len(list))
     cursor = db.cursor()
+
     for i in range(len(list)):
+
         obj = list[i]
+        print("第 %d 个元素是%s" % (i + 1,obj))
         content = obj.get('content')
+        content = remove_emoji(content)
         # 地区：济南，性别：男，职业：金融民工，学历：本科，年龄：31，对对方的大致要求：有趣最重要，别的都好说。
         info = get_user_base_info(content)
         created_time = obj.get('created_time')
@@ -72,6 +77,29 @@ def get_comment_detail(list,db):
             db.rollback()
 
 
+emoji_pattern = re.compile(u"(\ud83d[\ude00-\ude4f])|"  # emoticons
+    u"(\ud83c[\udf00-\uffff])|"  # symbols & pictographs (1 of 2)
+    u"(\ud83d[\u0000-\uddff])|"  # symbols & pictographs (2 of 2)
+    u"(\ud83d[\ude80-\udeff])|"  # transport & map symbols
+    u"(\ud83c[\udde0-\uddff])"  # flags (iOS)
+    "+", flags=re.UNICODE)
+
+emoji_pattern2 = re.compile(u'[\U00010000-\U0010ffff]')
+
+
+def remove_emoji(text):
+    return emoji_pattern2.sub(u'', text)
+
+def remove_emoji2(text):
+    try:
+        # python UCS-4 build的处理方式
+        highpoints = re.compile(u'[\U00010000-\U0010ffff]')
+    except re.error:
+        # python UCS-2 build的处理方式
+        highpoints = re.compile(u'[\uD800-\uDBFF][\uDC00-\uDFFF]')
+
+    resovle_value = highpoints.sub(u'??', src_string)
+    return resovle_value
 
 def get_user_base_info(content):
     split = content.split("，",5)
@@ -100,6 +128,7 @@ def get_user_base_info(content):
         else:
             print("66666666666666666666 split[0].find(: ) != -1 split=", split)
             return "area", "register_gender", "occupation", "education", "age", "requirement"
+
 
     content_split = content.split(" ",5)
     if len(content_split) > 5:
