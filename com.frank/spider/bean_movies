@@ -21,7 +21,7 @@ def download_page(url):
 ##  [<span class="title">肖申克的救赎</span>, <span class="title"> / The Shawshank Redemption</span>]
 ## find 获取的是<span class="title">肖申克的救赎</span>
 ## find_all 获取的是list [XXX,RRR,HHH]
-def parse_html(html):
+def parse_html_bean_top_250(html):
     print("parse_html html=", html)
     soup = BeautifulSoup(html)
     movie_list = soup.find('ol', attrs={'class': 'grid_view'})
@@ -63,7 +63,7 @@ def main():
     url = BEAN_TOP_250_URL
     while url:
         page = download_page(url)
-        url = parse_html(page)
+        url = parse_html_bean_top_250(page)
 
 
 if __name__ == '__main__':
