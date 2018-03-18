@@ -172,7 +172,12 @@ print("enter_info:", enter_info('张三', city='shanghai'))
 
 str = "地区：江西赣州，性别：男，职业：教书匠，学历：本科，年龄：24，对对方的大致要求：最好女的。"
 split = str.split("，")
-print("strip=", split)
+print("111 strip=", split)
+print("111 strip length =", len(split))
+
+split = str.split("#")
+print("222 strip=", split)
+print("222 strip length =", len(split))
 
 str2 = "地区：江西赣州"
 find = str2.find("2")
@@ -186,5 +191,7 @@ str3 = "地区江西赣州"
 find = str3.find("地区")
 print("index find=", find)
 
-index = str3.index("地区")
-print("index index=", index)
+
+
+s = "地区江西赣州"
+print("substring=", s[2:len(s)])
