@@ -31,6 +31,7 @@ def download_page(url):
     is_end = paging.get('is_end')
     next_url = paging.get('next')
     data = json_result.get('data')
+    print("is_end=%s,next_url=%s,data=XXX" % (is_end,next_url))
     return is_end,next_url,data
 
 
@@ -107,63 +108,67 @@ def remove_emoji2(text):
     return resovle_value
 
 def get_user_base_info(content):
-    split = content.split("，",5)
+    try:
+        split = content.split("，",5)
 
-    # 用逗号分隔出有效数据
-    if len(split) > 5:
-        print("len(split) > 5:")
-        if (split[0].find("：") != -1):
-            print("11111111111 split[0].find(: ) != -1 split=", split)
-            area = split[0].find("地区") != -1 and split[0][3:len(split[0])] or "area"
-            register_gender = split[1].find("性别") != -1 and split[1][3:len(split[1])] or "register_gender"
-            occupation = split[2].find("职业") != -1 and split[2][3:len(split[2])] or "occupation"
-            education = split[3].find("学历") != -1 and split[3][3:len(split[3])] or "education"
-            age = split[4].find("年龄") != -1 and split[4][3:len(split[4])] or "age"
-            requirement = split[5].find("要求") != -1 and split[5][split[5].find("要求：")+3:len(split[5])] or "requirement"
-            return area, register_gender, occupation, education, age, requirement
-        elif (split[0].find("地区") != -1):
-            print("2222222222221 split[0].find(: ) != -1 split=", split)
-            area = split[0].find("地区") != -1 and split[0][2:len(split[0])] or "area"
-            register_gender = split[1].find("性别") != -1 and split[1][2:len(split[1])] or "register_gender"
-            occupation = split[2].find("职业") != -1 and split[2][2:len(split[2])] or "occupation"
-            education = split[3].find("学历") != -1 and split[3][2:len(split[3])] or "education"
-            age = split[4].find("年龄") != -1 and split[4][2:len(split[4])] or "age"
-            requirement = split[5].find("要求") != -1 and split[5][split[5].find("要求")+2:len(split[5])] or "requirement"
-            return area, register_gender, occupation, education, age, requirement
+        # 用逗号分隔出有效数据
+        if len(split) > 5:
+            print("len(split) > 5:")
+            if (split[0].find("：") != -1):
+                print("11111111111 split[0].find(: ) != -1 split=", split)
+                area = split[0].find("地区") != -1 and split[0][3:len(split[0])] or "area"
+                register_gender = split[1].find("性别") != -1 and split[1][3:len(split[1])] or "register_gender"
+                occupation = split[2].find("职业") != -1 and split[2][3:len(split[2])] or "occupation"
+                education = split[3].find("学历") != -1 and split[3][3:len(split[3])] or "education"
+                age = split[4].find("年龄") != -1 and split[4][3:len(split[4])] or "age"
+                requirement = split[5].find("要求") != -1 and split[5][split[5].find("要求：")+3:len(split[5])] or "requirement"
+                return area, register_gender, occupation, education, age, requirement
+            elif (split[0].find("地区") != -1):
+                print("2222222222221 split[0].find(: ) != -1 split=", split)
+                area = split[0].find("地区") != -1 and split[0][2:len(split[0])] or "area"
+                register_gender = split[1].find("性别") != -1 and split[1][2:len(split[1])] or "register_gender"
+                occupation = split[2].find("职业") != -1 and split[2][2:len(split[2])] or "occupation"
+                education = split[3].find("学历") != -1 and split[3][2:len(split[3])] or "education"
+                age = split[4].find("年龄") != -1 and split[4][2:len(split[4])] or "age"
+                requirement = split[5].find("要求") != -1 and split[5][split[5].find("要求")+2:len(split[5])] or "requirement"
+                return area, register_gender, occupation, education, age, requirement
+            else:
+                print("66666666666666666666 split[0].find(: ) != -1 split=", split)
+                return "area", "register_gender", "occupation", "education", "age", "requirement"
+
+
+        content_split = content.split(" ",5)
+        if len(content_split) > 5:
+            if (content_split[0].find("：") != -1):
+                print("333333333333333333333333 content_split[0].find(: ) != -1 content_split=", content_split)
+                area = content_split[0].find("地区") != -1 and content_split[0][3:len(content_split[0])] or "area"
+                register_gender = content_split[1].find("性别") != -1 and content_split[1][
+                                                                        3:len(content_split[1])] or "register_gender"
+                occupation = content_split[2].find("职业") != -1 and content_split[2][3:len(content_split[2])] or "occupation"
+                education = content_split[3].find("学历") != -1 and content_split[3][3:len(content_split[3])] or "education"
+                age = content_split[4].find("年龄") != -1 and content_split[4][3:len(content_split[4])] or "age"
+                requirement = split[5].find("要求") != -1 and split[5][split[5].find("要求：")+3:len(split[5])] or "requirement"
+                return area, register_gender, occupation, education, age, requirement
+            elif (content_split[0].find("地区") != -1):
+                print("44444444444444444444 content_split[0].find(: ) != -1 content_split=", content_split)
+                area = content_split[0].find("地区") != -1 and content_split[0][2:len(content_split[0])] or "area"
+                register_gender = content_split[1].find("性别") != -1 and content_split[1][
+                                                                        2:len(content_split[1])] or "register_gender"
+                occupation = content_split[2].find("职业") != -1 and content_split[2][2:len(content_split[2])] or "occupation"
+                education = content_split[3].find("学历") != -1 and content_split[3][2:len(content_split[3])] or "education"
+                age = content_split[4].find("年龄") != -1 and content_split[4][2:len(content_split[4])] or "age"
+                requirement = split[5].find("要求") != -1 and split[5][split[5].find("要求")+2:len(split[5])] or "requirement"
+                return area, register_gender, occupation, education, age, requirement
+            else:
+                print("777777777777777777777777 split[0].find(: ) != -1 split=", split)
+                return "area", "register_gender", "occupation", "education", "age", "requirement"
         else:
-            print("66666666666666666666 split[0].find(: ) != -1 split=", split)
+            print("55555555555555555555 split[0].find(: ) != -1 split=", split)
             return "area", "register_gender", "occupation", "education", "age", "requirement"
-
-
-    content_split = content.split(" ",5)
-    if len(content_split) > 5:
-        if (content_split[0].find("：") != -1):
-            print("333333333333333333333333 content_split[0].find(: ) != -1 content_split=", content_split)
-            area = content_split[0].find("地区") != -1 and content_split[0][3:len(content_split[0])] or "area"
-            register_gender = content_split[1].find("性别") != -1 and content_split[1][
-                                                                    3:len(content_split[1])] or "register_gender"
-            occupation = content_split[2].find("职业") != -1 and content_split[2][3:len(content_split[2])] or "occupation"
-            education = content_split[3].find("学历") != -1 and content_split[3][3:len(content_split[3])] or "education"
-            age = content_split[4].find("年龄") != -1 and content_split[4][3:len(content_split[4])] or "age"
-            requirement = split[5].find("要求") != -1 and split[5][split[5].find("要求：")+3:len(split[5])] or "requirement"
-            return area, register_gender, occupation, education, age, requirement
-        elif (content_split[0].find("地区") != -1):
-            print("44444444444444444444 content_split[0].find(: ) != -1 content_split=", content_split)
-            area = content_split[0].find("地区") != -1 and content_split[0][2:len(content_split[0])] or "area"
-            register_gender = content_split[1].find("性别") != -1 and content_split[1][
-                                                                    2:len(content_split[1])] or "register_gender"
-            occupation = content_split[2].find("职业") != -1 and content_split[2][2:len(content_split[2])] or "occupation"
-            education = content_split[3].find("学历") != -1 and content_split[3][2:len(content_split[3])] or "education"
-            age = content_split[4].find("年龄") != -1 and content_split[4][2:len(content_split[4])] or "age"
-            requirement = split[5].find("要求") != -1 and split[5][split[5].find("要求")+2:len(split[5])] or "requirement"
-            return area, register_gender, occupation, education, age, requirement
-        else:
-            print("777777777777777777777777 split[0].find(: ) != -1 split=", split)
-            return "area", "register_gender", "occupation", "education", "age", "requirement"
-    else:
-        print("55555555555555555555 split[0].find(: ) != -1 split=", split)
+    except Exception as e:
+        # python UCS-2 build的处理方式
+        print("9999999999999 error=%s" % e)
         return "area", "register_gender", "occupation", "education", "age", "requirement"
-
 
 def insert_sql(data):
     # 打开数据库连接
@@ -194,7 +199,11 @@ def main():
     db = pymysql.connect("192.168.31.22", "root", "look", "mydb", use_unicode=True, charset="utf8")
     while not is_end:
         obj = download_page(url)
-        is_end = obj[0] == "false" and False not True
+
+
+        #is_end = (obj[0] == "False" or obj[0] == "false") and False or True
+        is_end = obj[0]
+        print("while not is_end = ",is_end)
         url = obj[1]
         data = obj[2]
         get_comment_detail(data,db)
