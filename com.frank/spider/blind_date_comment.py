@@ -5,7 +5,7 @@ import json
 import pymysql
 import re
 
-url = "https://www.zhihu.com/api/v4/answers/251023939/comments?include=data%5B*%5D.author%2Ccollapsed%2Creply_to_author%2Cdisliked%2Ccontent%2Cvoting%2Cvote_count%2Cis_parent_author%2Cis_author&order=normal&limit=20&offset=0&status=open"
+COMMENT = "https://www.zhihu.com/api/v4/answers/251023939/comments?include=data%5B*%5D.author%2Ccollapsed%2Creply_to_author%2Cdisliked%2Ccontent%2Cvoting%2Cvote_count%2Cis_parent_author%2Cis_author&order=normal&limit=20&offset=0&status=open"
 
 
 # 直接输入URL访问知乎的链接
@@ -25,8 +25,13 @@ def download_page(url):
     content = response.content.decode()
     #content = response.content
     # 注意：直接通过response.json 得到的数据，前边会有 <bound method Response.json of <Response [200]>> 这么个字符串，后边还有点特殊，不好处理
-    print("content json =", json.loads(content))
-    return content
+    json_result = json.loads(content)
+    print("content json =", json_result)
+    paging  =json_result.get('paging')
+    is_end = paging.get('is_end')
+    next_url = paging.get('next')
+    data = json_result.get('data')
+    return is_end,next_url,data
 
 
 def parse_html(response):
@@ -171,13 +176,28 @@ def insert_sql(data):
     # 关闭数据库连接
     db.close()
 
-page = download_page(url)
-print("download_page=", page)
-html = parse_html(page)
-print(html)
-data = html.get('data')
-print('get data=', data)
+# page = download_page(url)
+# print("download_page=", page)
+# html = parse_html(page)
+# print(html)
+# data = html.get('data')
+# print('get data=', data)
+#
+# # comment_detail = get_comment_detail(get)
+# # print('###############comment_detail=', comment_detail)
+# print("insert_sql=", insert_sql(data))
 
-# comment_detail = get_comment_detail(get)
-# print('###############comment_detail=', comment_detail)
-print("insert_sql=", insert_sql(data))
+
+def main():
+    url = COMMENT
+    is_end = False
+    db = pymysql.connect("192.168.31.22", "root", "look", "mydb", use_unicode=True, charset="utf8")
+    while not is_end:
+        obj = download_page(url)
+        is_end = obj[0] == "false" and False not True
+        url = obj[1]
+        data = obj[2]
+        get_comment_detail(data,db)
+    db.close()
+if __name__ == '__main__':
+    main()
