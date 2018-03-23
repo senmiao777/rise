@@ -39,7 +39,7 @@ def test():
 
     return str;
 
-
+# just for test
 # def importSql():
 #     df = ts.get_stock_basics()
 #     engine = create_engine('mysql://root:look@192.168.31.22:3306/mydb?charset=utf8')
