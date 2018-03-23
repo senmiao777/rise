@@ -40,6 +40,14 @@ def test():
     return str;
 
 
+# def importSql():
+#     df = ts.get_stock_basics()
+#     engine = create_engine('mysql://root:look@192.168.31.22:3306/mydb?charset=utf8')
+#
+#     # 存入数据库
+#     df.to_sql('benefit', engine)
+#     return "SUCC";
+#
 
 def res():
     df = ts.get_stock_basics()
