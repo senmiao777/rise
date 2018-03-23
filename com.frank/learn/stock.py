@@ -48,13 +48,7 @@ def test():
 #     df.to_sql('benefit', engine)
 #     return "SUCC";
 #
-# def importSql2():
-#     df = ts.get_stock_basics()
-#     engine = create_engine('mysql://qa:qatest@192.168.4.162:3306/xyqb?charset=utf8')
-#
-#     # 存入数据库
-#     df.to_sql('test_info2', engine)
-#     return "SUCC";
+
 
 def res():
     df = ts.get_stock_basics()
