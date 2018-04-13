@@ -195,3 +195,34 @@ print("index find=", find)
 
 s = "地区江西赣州"
 print("substring=", s[2:len(s)])
+
+def get_diff():
+    bigSister = open("D:/t1.txt", mode="r", encoding="utf-8")
+    s = set()
+    try:
+        ## 去掉行尾的 \n
+        all_the_text = bigSister.read().splitlines()
+        print("all_the_text", all_the_text)
+        readlines = bigSister.readlines(20)
+        print("readlines()=", readlines)
+        s = set(all_the_text)
+        print("set()=", s)
+    finally:
+        bigSister.close()
+
+    my = open("D:/t2.txt", mode="r", encoding="utf-8")
+    s1= set()
+    try:
+        ## 去掉行尾的 \n
+        all_the_text = my.read().splitlines()
+        print("all_the_text", all_the_text)
+        readlines = my.readlines(20)
+        print("readlines()=", readlines)
+        s1 = set(all_the_text)
+        print("set()=", s1)
+    finally:
+        bigSister.close()
+    return s - s1
+
+
+print(get_diff())
