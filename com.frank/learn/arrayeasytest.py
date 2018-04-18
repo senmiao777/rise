@@ -90,18 +90,20 @@ def string_to_int(str):
     i = 0
     while str[i] == ' ':
         i += 1
-
+    sign = 1
     if str[i] == '+' or str[i] == '-':
-        sign = str[i] == '+' if 1 else -1
+        sign = 1 if str[i] == '+' else -1
         i += 1
-
+    print("sign=", sign)
+    zero = ord('0')
     result = 0
-    max_int = sys.maxsize
-    while i < length and '0' <= str[i] <= '9':
-        if result > max_int / 10 or (result == max_int / 10 and str[i] - '0' > 7):
-            return max_int
-        result = result * 10 + str[i] - '0'
-
+    max_int = 2147483647
+    print("max_int=", max_int)
+    while i < length and str[i].isdigit():
+        if result > max_int / 10 or (result == max_int / 10 and ord(str[i]) - zero > 7):
+            return max_int if sign == 1 else -2147483648
+        result = result * 10 + ord(str[i]) - zero
+        i += 1
     return sign * result
 
 
@@ -126,3 +128,7 @@ print("move_zero=", num)
 
 num = [0, 8, 2, 4, 6, 5, 6, 7, 10, 9]
 print("contains_duplicate=", contains_duplicate(num))
+
+s = '-91283472332'
+
+print("string_to_int=", string_to_int(s))
