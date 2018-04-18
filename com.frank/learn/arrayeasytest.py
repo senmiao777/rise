@@ -92,6 +92,7 @@ def string_to_int(str):
         i += 1
     sign = 1
     if str[i] == '+' or str[i] == '-':
+        ## 三元运算符
         sign = 1 if str[i] == '+' else -1
         i += 1
     print("sign=", sign)
@@ -100,7 +101,7 @@ def string_to_int(str):
     max_int = 2147483647
     print("max_int=", max_int)
     while i < length and str[i].isdigit():
-        if result > max_int / 10 or (result == max_int / 10 and ord(str[i]) - zero > 7):
+        if result > int(max_int / 10) or (result == int(max_int / 10) and ord(str[i]) - zero > 7):
             return max_int if sign == 1 else -2147483648
         result = result * 10 + ord(str[i]) - zero
         i += 1
@@ -129,6 +130,19 @@ print("move_zero=", num)
 num = [0, 8, 2, 4, 6, 5, 6, 7, 10, 9]
 print("contains_duplicate=", contains_duplicate(num))
 
-s = '-91283472332'
+s = '2147483648'
 
 print("string_to_int=", string_to_int(s))
+s = '80'
+result = 214748364
+max_int = 2147483647
+## 这个的类型是float ！！！
+int_ = max_int / 10
+sub = result - 10
+print("result=%d,int =%d" % (result,int_))
+print("diff=", result > int_ )
+print("type=", type(result) )
+print("type=", type(max_int) )
+print("type=", type(int_) )
+print("type=", type(sub) )
+# 3result > max_int / 10or
