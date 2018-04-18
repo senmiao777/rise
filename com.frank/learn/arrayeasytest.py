@@ -1,5 +1,6 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
+import sys
 
 print('Hello World')
 
@@ -81,6 +82,29 @@ def contains_duplicate(numbers):
     return False
 
 
+def string_to_int(str):
+    length = len(str)
+    if length == 0:
+        return 0
+
+    i = 0
+    while str[i] == ' ':
+        i += 1
+
+    if str[i] == '+' or str[i] == '-':
+        sign = str[i] == '+' if 1 else -1
+        i += 1
+
+    result = 0
+    max_int = sys.maxsize
+    while i < length and '0' <= str[i] <= '9':
+        if result > max_int / 10 or (result == max_int / 10 and str[i] - '0' > 7):
+            return max_int
+        result = result * 10 + str[i] - '0'
+
+    return sign * result
+
+
 num = [1, 4, 11, 15, 17]
 target = 26
 print("twoSum=", twoSum(num, target))
@@ -100,5 +124,5 @@ num = [0, 8, 2, 0, 4, 5, 6, 7, 10, 9, 0]
 move_zero(num)
 print("move_zero=", num)
 
-num = [0, 8, 2, 4, 6,5, 6, 7, 10, 9]
+num = [0, 8, 2, 4, 6, 5, 6, 7, 10, 9]
 print("contains_duplicate=", contains_duplicate(num))
