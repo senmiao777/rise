@@ -191,10 +191,9 @@ str3 = "地区江西赣州"
 find = str3.find("地区")
 print("index find=", find)
 
-
-
 s = "地区江西赣州"
 print("substring=", s[2:len(s)])
+
 
 def get_diff():
     bigSister = open("D:/t1.txt", mode="r", encoding="utf-8")
@@ -211,7 +210,7 @@ def get_diff():
         bigSister.close()
 
     my = open("D:/t2.txt", mode="r", encoding="utf-8")
-    s1= set()
+    s1 = set()
     try:
         ## 去掉行尾的 \n
         all_the_text = my.read().splitlines()
@@ -225,4 +224,84 @@ def get_diff():
     return s - s1
 
 
-print(get_diff())
+##print(get_diff())
+# a= 10
+# b= 100
+# and_b = a and b
+# print("a and b =", and_b)
+# print("a and b =", type(and_b))
+a = 10
+b = 100
+b_a = b / a
+print("b_a =", b_a)
+print("b_a  type=", type(b_a))
+
+print("100 / 10 =", 100 / 10)
+
+from enum import Enum, unique
+
+
+# unique用于校验枚举值的唯一性
+@unique
+class Roman(Enum):
+    M = ('M', 1000, 'M对应值为1000')
+    D = ('D', 500, 'D对应值为500')
+    C = ('C', 100, 'C对应值为100。C can be placed before D (500) and M (1000) to make 400 and 900')
+    L = ('L', 50, 'L对应值为50')
+    X = ('X', 10, 'X对应值为10。X can be placed before L (50) and C (100) to make 40 and 90')
+    V = ('V', 5, 'V对应值为5')
+    I = ('I', 1, 'I对应值为1。I can be placed before V (5) and X (10) to make 4 and 9')
+    IV = ('IV', 4, 'IV对应值为4')
+    IX = ('IX', 9, 'IX对应值为9')
+    XL = ('XL', 40, 'XL对应值为40')
+    XC = ('XC', 90, 'XC对应值为90')
+    CD = ('CD', 400, 'CD对应值为400')
+    CM = ('CM', 900, 'CM对应值为900')
+
+    def __init__(self, key, number, desc):
+        self.key = key
+        self.number = number
+        self.desc = desc
+
+    @property
+    def _value(self):
+        return self.number
+
+    @property
+    def _key(self):
+        return self.key
+
+    @property
+    def _desc(self):
+        return self.desc
+
+
+print("11111111111111111111111Roman=", Roman)
+print("11111111111111111111111Roman.CM.key=", Roman.CM._key)
+print("11111111111111111111111Roman.CM.number=", Roman.CM._value)
+print("11111111111111111111111Roman.CM._desc=", Roman.CM._desc)
+
+
+class Planet(Enum):
+    MERCURY = (3.303e+23, 2.4397e6)
+    VENUS = (4.869e+24, 6.0518e6)
+    EARTH = (5.976e+24, 6.37814e6)
+    MARS = (6.421e+23, 3.3972e6)
+    JUPITER = (1.9e+27, 7.1492e7)
+    SATURN = (5.688e+26, 6.0268e7)
+    URANUS = (8.686e+25, 2.5559e7)
+    NEPTUNE = (1.024e+26, 2.4746e7)
+
+    def __init__(self, mass, radius):
+        self.mass = mass  # in kilograms
+        self.radius = radius  # in meters
+
+    @property
+    def surface_gravity(self):
+        # universal gravitational constant  (m3 kg-1 s-2)
+        G = 6.67300E-11
+        return G * self.mass / (self.radius * self.radius)
+
+
+print("Planet.CM.desc=", Planet.EARTH.value)
+print("Planet.CM.desc=", Planet.EARTH.surface_gravity)
