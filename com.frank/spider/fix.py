@@ -6,20 +6,18 @@ import pymysql
 import re
 import time
 
-def send(_age, _name, _type):
+def send(order_no, term, _type):
     head = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'
     }
     ##post发送的数据
+
     postData = {
-        'name': _name,
-        'age': _age,
-        'type': _type,
-        'key': 'BO123'
+        'orderNo': order_no,
+        'useage': 3
     }
 
-## 必须是http（s）://开头
-    _url="http://www.baidu.com"
+    _url="http://www.b"
     response = requests.post(url=_url, headers=head, data=postData)
     json_result = json.loads(response.text)
     print("response code =", json_result.get('code'))
@@ -35,11 +33,11 @@ def read_txt():
         print("lines =", lines)
         for i in range(lines):
             split = ftextlist[i].split(",")
-            id = split[0]
+            _id = split[0]
             term = split[1]
-            print("split[0] = ", id)
+            print("split[0] = ", _id)
             print("split[1] = ", term)
-            send_result = send(id.strip(), term.strip(), 'all')
+            send_result = send(_id.strip(), term.strip(), '123')
             time.sleep(0.1)
     return 0
 
