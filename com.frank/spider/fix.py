@@ -5,7 +5,7 @@ import json
 import pymysql
 import re
 import time
-
+from datetime import datetime
 def send(order_no, term, _type):
     head = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'
@@ -44,4 +44,9 @@ def read_txt():
 
 # print("result = ",send(1,1,1))
 
-print("result = ", read_txt())
+##print("result = ", read_txt())
+
+
+
+
+
