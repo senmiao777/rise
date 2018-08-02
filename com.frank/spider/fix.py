@@ -41,10 +41,31 @@ def read_txt():
             time.sleep(0.1)
     return 0
 
+def send(stock_code):
+    head = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'
+    }
+    ##post发送的数据
 
+    _data = {
+        'stockCode': stock_code
+    }
+
+    _url="http://localhost:8080/t/stock/info2"
+    response = requests.get(url=_url, headers=head, params=_data)
+    json_result = json.loads(response.text)
+    print("response data =", json_result.get('data'))
+    return json_result.get('data')
+
+def for_send():
+    for i in range(50):
+        send('603722')
+        time.sleep(0.1)
 # print("result = ",send(1,1,1))
 
 ##print("result = ", read_txt())
+print("result = ", for_send())
+
 
 
 
