@@ -65,7 +65,7 @@ def get_comments():
          'appmsg_token': '971_8aRswl1YGI7kydPAPbVCTEFo-Jt24KDpXwI_HUtabAT6lznDvoLKuppGVF1rlrgjL7SJ3X_Idpjs53jm',
          'x5': 0
     }
-    _url = 'https://mp.weixin.qq.com/mp/getappmsgext' + urlencode(params)
+    _url = 'https://mp.weixin.qq.com/mp/getappmsgext'
 
     response = requests.post(url=_url, headers=headers, proxies=proxies, data=params)
     print('页面请求成功',response)
