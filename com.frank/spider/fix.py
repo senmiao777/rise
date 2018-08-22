@@ -51,7 +51,8 @@ def send(stock_code):
         'stockCode': stock_code
     }
 
-    _url="http://localhost:8080/t/stock/info2"
+    #_url = "http://localhost:8080/t/stock/info2"
+    _url = "http://learn.com/t/stock/info2"
     response = requests.get(url=_url, headers=head, params=_data)
     json_result = json.loads(response.text)
     print("response data =", json_result.get('data'))
