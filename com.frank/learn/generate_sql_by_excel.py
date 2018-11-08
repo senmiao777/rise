@@ -112,7 +112,9 @@ def generate_sql(file_path):
         # .encode("utf-8")
         execute = cursor.execute(_sql.encode("utf-8"))
         print("execute=", execute)
+        # 最后插入行的主键id
+        print("ID of last record is ", int(cursor.lastrowid))  # 最后插入行的主键ID
         connect.commit()
 
-
 print("zhixing", generate_sql('C:/Users/test2.xlsx'))
+
