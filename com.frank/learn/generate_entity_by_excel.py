@@ -11,6 +11,16 @@ def str2Hump(text):
         # res = res + arr[i]
     return arr[0] + res
 
+def get_type(s):
+    if s.find('BigDecimal') != -1:
+        return 'BigDecimal'
+    elif s.find('int') != -1:
+        return 'Integer'
+    elif s.upper().find('JSON') != -1:
+        return 'Object'
+    else:
+        return 'String'
+
 
 
 def generate_entity_2_txt(file_path):
@@ -21,16 +31,18 @@ def generate_entity_2_txt(file_path):
     print("sheet=", sheet)
 
     json_field = '@JSONField(name = "{}")'
-    perfix = 'private String {};\n'
+    perfix = 'private {} {};\n'
     remark = '/** * {} */'
 
     for row in sheet.rows:
         property = row[0].value
         desc = row[3].value
+        _type = row[1].value
         final_desc = remark.format(desc)
         final_json_field = json_field.format(property)
         hump_property = str2Hump(property)
-        final_property = perfix.format(hump_property)
+        final_type = get_type(_type)
+        final_property = perfix.format(final_type,hump_property)
 
         final_str = final_desc + final_json_field + final_property
 
