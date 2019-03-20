@@ -12,12 +12,21 @@ def str2Hump(text):
     return arr[0] + res
 
 def get_type(s):
+    s = s.strip()
+    if (s == None) or (len(s) == 0):
+        return 'String'
     if s.find('BigDecimal') != -1:
         return 'BigDecimal'
     elif s.find('int') != -1:
         return 'Integer'
     elif s.upper().find('JSON') != -1:
         return 'Object'
+    elif s.upper().find('Array') != -1:
+        return 'List'
+    elif s.upper().find('Number') != -1:
+        return 'Integer'
+    elif s.upper().find('Double') != -1:
+        return 'BigDecimal'
     else:
         return 'String'
 
@@ -35,9 +44,9 @@ def generate_entity_2_txt(file_path):
     remark = '/** * {} */'
 
     for row in sheet.rows:
-        property = row[0].value
-        desc = row[3].value
-        _type = row[1].value
+        property = row[1].value
+        desc = row[2].value
+        _type = row[4].value
         final_desc = remark.format(desc)
         final_json_field = json_field.format(property)
         hump_property = str2Hump(property)
@@ -49,5 +58,5 @@ def generate_entity_2_txt(file_path):
         print( final_str)
 
 
-print("zhixing", generate_entity_2_txt('D:/test/apply.xlsx'))
+print("zhixing", generate_entity_2_txt('D:/test/zhongbang.xlsx'))
 
