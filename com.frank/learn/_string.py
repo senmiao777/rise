@@ -53,9 +53,9 @@ def println():
 
 t = ('com', 'edu', 'net', 'org', 'gov')
 
-print('读取txt result =', read_txt('G:\pycharm\pytest.txt'));
+#print('读取txt result =', read_txt('G:\pycharm\pytest.txt'));
 
-print(println())
+#print(println())
 
 
 def generate2():
@@ -125,9 +125,19 @@ def genearateemail(number):
         result = '%s@%s' % (suf, r.choice(suffix))
         print(result)
 
+def test_str(s):
+    if s == None:
+        print("s is nune")
+    elif len(s) == 0:
+        print("length = 0")
+    else:
+        print("s = ",s)
 
-genearatename(5)
-genearateemail(10)
+
+#genearatename(5)
+#genearateemail(10)
+s = 'sdfsdf'
+test_str(s)
 
 
 
